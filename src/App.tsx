@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // constants
@@ -9,7 +9,7 @@ import { currencyByTaka } from './constants';
 import CurrencyButton from './components/CurrencyButton';
 
 export default function App() {
-  const [first, setfirst] = useState(second);
+  const [first, setfirst] = useState(false);
 
   return (
     <SafeAreaView>
