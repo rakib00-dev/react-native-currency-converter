@@ -1,4 +1,4 @@
-export const currencyByRupee: Currency[] = [
+export const currencyByTaka: Currency[] = [
   {
     name: 'DOLLAR',
     value: 0.0081,
