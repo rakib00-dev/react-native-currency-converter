@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -9,12 +9,11 @@ import { currencyByTaka } from './constants';
 import CurrencyButton from './components/CurrencyButton';
 
 export default function App() {
-  const [first, setfirst] = useState(false);
-
   return (
     <SafeAreaView>
+      <StatusBar />
       <View>
-        <Text>App</Text>
+        <Text></Text>
       </View>
     </SafeAreaView>
   );
