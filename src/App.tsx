@@ -32,8 +32,8 @@ export default function App() {
       setTargetCurrency(targetValue.name);
     } else {
       return Snackbar.show({
-        text: 'Enter a value to convert',
-        backgroundColor: '#ea7773',
+        text: 'Not a Valid number to convert',
+        backgroundColor: '#e4be2c',
         textColor: '#000000',
       });
     }
