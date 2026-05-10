@@ -1,4 +1,12 @@
-import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -42,8 +50,41 @@ export default function App() {
   return (
     <SafeAreaView>
       <StatusBar />
-      <View>
-        <Text></Text>
+
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View style={styles.takaContainer}>
+            <View style={styles.taka}>৳</View>
+            <TextInput
+              value={inputValue}
+              onChangeText={setInputValue}
+              clearButtonMode="always"
+              keyboardType="number-pad"
+              placeholder="Enter Amount in Taka"
+              maxLength={14}
+            />
+          </View>
+          {resultValue && <Text style={styles.resultTxt}> {resultValue}</Text>}
+        </View>
+
+        <View style={styles.bottomContainer}>
+          <FlatList
+            numColumns={3}
+            data={currencyByTaka}
+            keyExtractor={item => item.name}
+            renderItem={({ index, item }) => (
+              <Pressable
+                style={[
+                  styles.button,
+                  targetCurrency === item.name && styles.selected,
+                ]}
+                onPress={() => buttonPressed(item)}
+              >
+                <CurrencyButton {...item} />
+              </Pressable>
+            )}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -64,14 +105,14 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontWeight: '800',
   },
-  rupee: {
+  taka: {
     marginRight: 8,
 
     fontSize: 22,
     color: '#000000',
     fontWeight: '800',
   },
-  rupeesContainer: {
+  takaContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
