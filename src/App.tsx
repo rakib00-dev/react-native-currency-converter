@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // constants
@@ -48,13 +48,15 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView>
+    <>
       <StatusBar />
 
       <View style={styles.container}>
         <View style={styles.topContainer}>
           <View style={styles.takaContainer}>
-            <View style={styles.taka}>৳</View>
+            <View>
+              <Text style={styles.taka}>৳</Text>
+            </View>
             <TextInput
               value={inputValue}
               onChangeText={setInputValue}
@@ -62,9 +64,14 @@ export default function App() {
               keyboardType="number-pad"
               placeholder="Enter Amount in Taka"
               maxLength={14}
+              style={{ fontSize: 20, color: 'white' }}
             />
           </View>
-          {resultValue && <Text style={styles.resultTxt}> {resultValue}</Text>}
+          <View>
+            {resultValue && (
+              <Text style={styles.resultTxt}> {resultValue}</Text>
+            )}
+          </View>
         </View>
 
         <View style={styles.bottomContainer}>
@@ -86,7 +93,7 @@ export default function App() {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </>
   );
 }
 
@@ -102,14 +109,14 @@ const styles = StyleSheet.create({
   },
   resultTxt: {
     fontSize: 32,
-    color: '#000000',
+    color: '#d9d9d9',
     fontWeight: '800',
   },
   taka: {
     marginRight: 8,
 
     fontSize: 22,
-    color: '#000000',
+    color: '#ffffff',
     fontWeight: '800',
   },
   takaContainer: {
