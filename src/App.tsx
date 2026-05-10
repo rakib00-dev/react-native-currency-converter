@@ -4,11 +4,41 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 // constants
 import { currencyByTaka } from './constants';
-
-// components
 import CurrencyButton from './components/CurrencyButton';
 
+// components
+import { Snackbar } from 'react-native-snackbar';
+
 export default function App() {
+  const [inputValue, setInputValue] = React.useState('');
+  const [resultValue, setResultValue] = React.useState('');
+  const [targetCurrency, setTargetCurrency] = React.useState('');
+
+  const buttonPressed = (targetValue: Currency) => {
+    if (!targetValue) {
+      return Snackbar.show({
+        text: 'Enter a value to convert',
+        backgroundColor: '#ea7773',
+        textColor: '#000000',
+      });
+    }
+
+    const inputAmount = parseFloat(inputValue);
+    if (!isNaN(inputAmount)) {
+      const convertedValue = inputAmount * targetValue.value;
+      const result = `${targetValue.symbol} ${convertedValue.toFixed(2)} 💰`;
+
+      setResultValue(result);
+      setTargetCurrency(targetValue.name);
+    } else {
+      return Snackbar.show({
+        text: 'Enter a value to convert',
+        backgroundColor: '#ea7773',
+        textColor: '#000000',
+      });
+    }
+  };
+
   return (
     <SafeAreaView>
       <StatusBar />
